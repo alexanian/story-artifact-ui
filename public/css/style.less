@@ -1,0 +1,42 @@
+// Colours for heatmap
+@neg-30: #F72E20; // Less than 30% positive - rgb(247,46,32)
+@neg-60: #FFAC37; // Less than 60% positive - rgb (255,172,55)
+@pos-75: #FFEB4D; // Less than 75% positive - rgb(255, 235, 77)
+@pos:    #AFF757; // More than 75% positive - rgb(175, 347, 87)
+
+// Other colours
+@dark-blue: #00003D;
+
+// Circle mixin with LESS from http://davidwalsh.name/css-circles
+.circle(@size: 0) {
+  width: @size;
+  height: @size;
+	
+  -webkit-border-radius: @size / 2 + 0px;
+  -moz-border-radius: @size / 2 + 0px;
+  border-radius: @size / 2 + 0px;
+}
+
+// List item height
+@li-height: 80px;
+
+a {
+  color: @dark-blue;
+}
+
+#list-container {
+  li {
+    height: @li-height;
+	
+    div.status {
+	  .circle(@li-height);
+	  background-color: @pos;
+	  color: #FFF;
+	  display: inline;
+	}
+  }
+  
+  li:hover {
+  }
+  
+}

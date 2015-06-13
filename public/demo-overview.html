@@ -32,6 +32,7 @@
 	
 	<!-- Project CSS -->
 	<link rel="stylesheet" href="./css/style.css">
+
   </head>
 
   <body>
@@ -49,8 +50,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li ><a href="./demo-overview.html">Demo</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li class="active"><a href="./demo-overview.html">Demo</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -58,15 +59,23 @@
     </nav>
 
     <div class="container">
-	  <h1>Story Artifacts</h1>
-      <p class="lead">Bringing your stories to the people who need to hear them.</p>
-	  <div class="col-md-4">
-	    Our team came together at the Kitchener-Waterloo PCH Hardware Hackathon around a vision of helping people share memories and experiences using collectively-created storytelling objects.
+	  <div id="heatmap-container" class="col-md-7">
+	    <img class="img-responsive" src="http://upload.wikimedia.org/wikipedia/commons/b/b6/PSM_V79_D623_First_floor_plan_of_the_zoological_lab_at_the_u_of_pennsylvania.png" alt="First floor plan of the zoological lab at the University of Pennsylvania, from Wikimedia Commons"/>
+      </div>
+	  <div id="list-container" class="col-md-4">
+	    <h2>
+		  <a class="btn btn-default" href="#">Search</a>
+		  <a class="btn btn-default" href="#">Insight</a></span>
+		  <a class="btn btn-default" href="#">Settings</a></span>
+		</h2>
+		<ul class="list-unstyled">
+		  <a href="#"><li><div class="status">70%</div>Waiting Room 1</li></a>		  
+		  <li><a href="#"><div class="status">70%</div>Waiting Room 3</a></li>
+		  <li><a href="#"><div class="status">70%</div>Conference Hall</a></li>
+		  <li><a href="#"><div class="status">70%</div>Operation Hall</a></li>
+		</ul>
 	  </div>
-	  <div class="col-md-8">
-	    <img class="img-responsive" src="./images/finding-user-stories.jpg"/>
-	  </div>
- 	</div><!-- /.container -->
+    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
