@@ -18,12 +18,12 @@ app.post('/rest/overview', function (req, res) {
 });
 
 app.post('/rest/object', function (req, res) {
-  var id=req.body.id.length||0;
+  var id=req.body.id;
   res.send(data.getObject(id))
 });
 
 app.post('/rest/story', function (req, res) {
-  var id=req.body.id.length||0;
+  var id=req.body.id;
   res.send(data.getStory(id))
 });
 
