@@ -10,7 +10,7 @@
             .then(function (data) {
                 var html = "";
                 _.forEach(data, function (obj,key) {
-                    html += '<a href="objects.html#' + key+1 + '">' + key+1 + '</a>';
+                    html += '<a href="objects.html#' + key + '">' + key + '</a>';
                     html += "<br>"
                 });
                 document.getElementById("result").innerHTML = html;
