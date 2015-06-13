@@ -28,6 +28,10 @@ app.post('/rest/story', function (req, res) {
 });
 
 
+app.post('/rest/dump', function (req, res) {
+  res.send("file received")
+});
+
 
 var server = app.listen(3000, function () {
   var host = server.address().address;

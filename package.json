@@ -18,6 +18,7 @@
   "homepage": "https://github.com/alexanian/story-artifact-ui#readme",
   "dependencies": {
     "body-parser": "^1.12.4",
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "lodash": "^3.9.3"
   }
 }
