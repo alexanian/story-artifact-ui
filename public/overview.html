@@ -1,0 +1,23 @@
+<html>
+<head></head>
+<body>
+<script src="./script/jquery.min.js"></script>
+<script src="./script/bluebird.min.js"></script>
+<script src="./script/lodash.min.js"></script>
+<script src="./script/common.js"></script>
+<script>
+    query('../rest/overview', {})
+            .then(function (data) {
+                var html = "";
+                _.forEach(data, function (obj,key) {
+                    html += '<a href="objects.html#' + key + '">' + key + '</a>';
+                    html += "<br>"
+                });
+                document.getElementById("result").innerHTML = html;
+            })
+</script>
+
+list of objects
+<div id="result"><</div>
+</body>
+</html>

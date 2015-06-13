@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+<script src="./script/jquery.min.js"></script>
+<script src="./script/bluebird.min.js"></script>
+<script src="./script/lodash.min.js"></script>
+<script src="./script/common.js"></script>
+<script>
+    var param={
+        id:geturl()
+    };
+    query('../../rest/object', param)
+            .then(function (data) {
+                var html = "";
+                console.log("1",data)
+                _.forEach(data.stories, function (obj) {
+                    console.log(obj)
+                    html += '<a href="stories.html#' + obj + '">' + obj + '</a>';
+                    html += "<br>"
+                });
+                document.getElementById("result").innerHTML = html;
+            })
+</script>
+
+list of stories
+<div id="result"><</div>
+</body>
+</html>
