@@ -9,8 +9,8 @@
     query('../rest/overview', {})
             .then(function (data) {
                 var html = "";
-                _.forEach(data, function (obj) {
-                    html += '<a href="objects.html#' + obj + '">' + obj + '</a>';
+                _.forEach(data, function (obj,key) {
+                    html += '<a href="objects.html#' + key + '">' + key + '</a>';
                     html += "<br>"
                 });
                 document.getElementById("result").innerHTML = html;
