@@ -11,7 +11,13 @@
 
     <title>Story Artifacts UI</title>
 
-	<!-- Latest compiled and minified CSS -->
+    <!-- Project scripts -->
+    <script src="./script/jquery.min.js"></script>
+    <script src="./script/bluebird.min.js"></script>
+    <script src="./script/common.js"></script>
+    <script src="./script/lodash.min.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
     <!-- Optional theme -->
@@ -19,7 +25,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	
+    
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -29,10 +35,71 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
-	<!-- Project CSS -->
-	<link rel="stylesheet" href="./css/style.css">
+    
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+    //query('../rest/overview', {})
+    var data= [{
+        "pos": 1,
+        "neg": 2,
+        "location": "Waiting Room 1",
+        "stories": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "x": 0.4,
+        "y": 0.5
+    },
+    {
+        "pos": 11,
+        "neg": 2,
+        "location": "Waiting Room 3",
+        "stories": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "x": 0.6,
+        "y": 0.7
+    }];
+    var objectList = "";
+    Promise.resolve(data)
+      .then(function (data) {
 
+          _.forEach(data, function (obj) {
+            objectList += '<li><a href="#"><span class="status '
+
+            // Assign colour class based on percent of positive reviews
+            var pctPos = obj.pos / ( obj.pos + obj.neg);
+            switch (true){
+              
+              case (pctPos < 0.4):
+                objectList += 'pos-40">'; break;
+              case (pctPos < 0.6):
+                objectList += 'pos-60">'; break;
+              case (pctPos < 0.75):
+                objectList += 'pos-75">'; break;
+              default:
+                objectList += 'pos">'; break;
+            }
+       
+            objectList += String(Math.round(pctPos*100)) + "%</span>"
+            objectList += obj.location +"</li>"
+          });
+      })
+     
+    $(document).ready( function() {       
+      var listHTML = $("#list").html();
+      listHTML += objectList;
+      $("#list").html(listHTML);
+    });
+    </script>
   </head>
 
   <body>
@@ -50,31 +117,48 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="./index.html">Home</a></li>
-            <li class="active"><a href="./demo-overview.html">Demo</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/public/index.html">Home</a></li>
+            <li class="active"><a href="/public/demo-overview.html">Demo</a></li>
+            <li><a href="#">A project of the 2015 Kitchener-Waterloo PCH Hardware Hackathon</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
-	  <div id="heatmap-container" class="col-md-7">
-	    <img class="img-responsive" src="http://upload.wikimedia.org/wikipedia/commons/b/b6/PSM_V79_D623_First_floor_plan_of_the_zoological_lab_at_the_u_of_pennsylvania.png" alt="First floor plan of the zoological lab at the University of Pennsylvania, from Wikimedia Commons"/>
+    <div class="container demo-container">
+      <h1>What stories are being told?</h1>
+      <div id="heatmap-container" class="col-md-7">         
+        <img src="http://upload.wikimedia.org/wikipedia/commons/b/b6/PSM_V79_D623_First_floor_plan_of_the_zoological_lab_at_the_u_of_pennsylvania.png" alt="First floor plan of the zoological lab at the University of Pennsylvania, from Wikimedia Commons"/>
+        <div class="markers">
+          <div id="OperationsRoom" class="marker" style="left:42%; top:60%;">
+            <span class="marker-content glyphicon glyphicon-headphones pos-60">
+          </div>
+          <div id="WaitingRoom1" class="marker" style="left:60%; top:42%;">
+            <span class="marker-content glyphicon glyphicon-headphones pos">
+          </div>
+           <div id="WaitingRoom3" class="marker" style="left:60%; top:80%;">
+            <span class="marker-content glyphicon glyphicon-headphones pos-40">
+          </div>
+        </div>
       </div>
-	  <div id="list-container" class="col-md-4">
-	    <h2>
-		  <a class="btn btn-default" href="#">Search</a>
-		  <a class="btn btn-default" href="#">Insight</a></span>
-		  <a class="btn btn-default" href="#">Settings</a></span>
-		</h2>
-		<ul class="list-unstyled">
-		  <a href="#"><li><div class="status">70%</div>Waiting Room 1</li></a>		  
-		  <li><a href="#"><div class="status">70%</div>Waiting Room 3</a></li>
-		  <li><a href="#"><div class="status">70%</div>Conference Hall</a></li>
-		  <li><a href="#"><div class="status">70%</div>Operation Hall</a></li>
-		</ul>
-	  </div>
+      <div id="list-container" class="col-md-4">
+        <h2>
+          <button class="btn btn-default" href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</a>
+          </button>
+          <button class="btn btn-default" href="#">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Insights</a>
+          </button>
+          <button class="btn btn-default" href="#">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</a>
+          </button>
+        </h2>
+        <p class="lead">Select one of the listening stations to learn more about the stories being told in that space.</p>
+
+        <ul id="list" class="list-unstyled">
+          <li><a href="#"><span class="status pos-60">67%</span>Operations Room</a></li>
+        </ul>
+      </div>
     </div><!-- /.container -->
 
 

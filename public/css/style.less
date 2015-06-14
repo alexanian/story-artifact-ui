@@ -1,42 +1,144 @@
 // Colours for heatmap
-@neg-30: #F72E20; // Less than 30% positive - rgb(247,46,32)
-@neg-60: #FFAC37; // Less than 60% positive - rgb (255,172,55)
+@pos-40: #F72E20; // Less than 30% positive - rgb(247,46,32)
+@pos-60: #FFAC37; // Less than 60% positive - rgb (255,172,55)
 @pos-75: #FFEB4D; // Less than 75% positive - rgb(255, 235, 77)
-@pos:    #AFF757; // More than 75% positive - rgb(175, 347, 87)
+@pos:    #AFF757; // More than 75% positive - rgb(175, 247, 87)
 
 // Other colours
 @dark-blue: #00003D;
+@light-blue: #EDFAF9;
+@circle-size: 50px;
 
 // Circle mixin with LESS from http://davidwalsh.name/css-circles
 .circle(@size: 0) {
   width: @size;
   height: @size;
-	
+    
   -webkit-border-radius: @size / 2 + 0px;
   -moz-border-radius: @size / 2 + 0px;
   border-radius: @size / 2 + 0px;
 }
 
-// List item height
-@li-height: 80px;
-
-a {
-  color: @dark-blue;
+.shadow(@color: #000, @size: 12px) {
+   -moz-box-shadow:    inset 0 0 @size @color;
+   -webkit-box-shadow: inset 0 0 @size @color;
+   box-shadow:         inset 0 0 @size @color;
 }
 
+// General element styles
+
+// Colour Classes
+.pos-40 {  background-color: @pos-40; }
+.pos-60 {  background-color: @pos-60; }
+.pos-75 {  background-color: @pos-75; }
+.pos {     background-color: @pos; }
+
+// Clearfix
+#list-container{
+  ul, li, a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 1;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    position: relative;
+  }
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.demo-container {
+  background-color: @light-blue;
+}
+
+// Map style
+#heatmap-container {
+  // Style based on http://stackoverflow.com/questions/29582571/what-is-the-best-way-to-position-div-markers-over-a-base-image-and-allow-for-r
+  display: inline-block;
+  position: relative;
+  
+  img {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+  }
+  
+  .markers {
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+    
+    .marker {
+      position: absolute;
+      text-align: center;
+    }
+    
+    .marker > .marker-content {
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+      -o-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      
+      .circle(@circle-size);
+      line-height: @circle-size;
+      .shadow(#FFF);
+    }
+    .marker > .marker-content:hover {
+      .shadow(#FFF, 20px);
+    }
+    
+  }
+}
+
+// List style
 #list-container {
-  li {
-    height: @li-height;
-	
-    div.status {
-	  .circle(@li-height);
-	  background-color: @pos;
-	  color: #FFF;
-	  display: inline;
-	}
+   background-color: white;
+
+  // Style based on http://cssmenumaker.com/blog/flat-jquery-accordion-menu-tutorial
+  a {
+    line-height: 1.3;
+    font-size: 25px;
+    font-weight: bold;
+    display: block;
+    background: #fff;
+    color: @dark-blue;
+    border-width: 5px 0px;
+    border-style: solid;
+    border-color: #fff;
+    text-transform: uppercase;
+    position: relative;
   }
   
-  li:hover {
+  a:hover{
+    text-decoration: none;
+    background: @light-blue;
   }
   
+  span.status {
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 12px;
+  }
+}
+
+// Navbar
+nav.navbar-static-top {
+  background-color: @dark-blue;
+  background-image: none;
+  
+  a.navbar-brand, a.navbar-brand:hover {
+    color: @light-blue;
+  }
+  ul.nav a {
+    color: @light-blue;
+  }
 }
