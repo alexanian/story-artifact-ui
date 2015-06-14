@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- local testing base<BASE href="file:///C:/Users/Tessa/Documents/Repositories/story-artifact-ui/public/">-->
-    <BASE href="/public/">
+    <BASE href="file:///C:/Users/Tessa/Documents/Repositories/story-artifact-ui/public/">
+    <!-- local testing base <BASE href="/public/"> -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -223,47 +223,27 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Artifacts</a>
+          <a class="navbar-brand" href="./index.html">Artifact</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="./index.html">Home</a></li>
-            <li class="active"><a href="./demo-overview.html">Demo</a></li>
-            <li><a href="#">A project of the 2015 Kitchener-Waterloo PCH Hardware Hackathon</a></li>
+            <li><a href="./index.html">Vision</a></li>
+            <li class="active"><a href="demo-overview.html">UI Demo</a></li>
+            <li><a href="hardware-hack.html">Hardware Hack</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-
     <div class="container demo-container">
       <div class="row">
+        <img class="img-responsive" src="./images/analytics-mockup.png"></img>
         <div id="location-info-container" class="col-md-4">
           <h2 id="location-name"><span class="status pos-60">67%</span>Waiting Room 3</h2>
           <div class="location-info">
-            <p class="lead">Waiting Room 3 mostly houses patients waiting to see an orthopaedic specialist</p>
-            <p>In the past <span id="time-step">hour</span> there have been:</p>
+            <p class="lead">In the past <span class="time-step">hour</span> there have been:</p>
             <p><span id="responseCount">84</span> Responses and <span id="storyCount">22</span> Stories Shared</p>
           </div>
-        </div>
-        <div id="location-stats-container" class="col-md-8">
-          <h4>See stories from the past... </h4>
-          <!-- Graph HTML -->
-          <div id="graph-wrapper">
-            <div class="graph-info">
-              <a href="javascript:void(0)" class="visitors">Visitors</a>
-              <a href="javascript:void(0)" class="returning">Returning Visitors</a>
-             
-              <a href="#" id="bars"><span></span></a>
-              <a href="#" id="lines" class="active"><span></span></a>
-            </div>
-             
-            <div class="graph-container">
-                <div id="graph-lines"></div>
-                <div id="graph-bars"></div>
-            </div> 
-          </div>
-          <!-- end Graph HTML -->
         </div>
       </div>
       <div class="row">

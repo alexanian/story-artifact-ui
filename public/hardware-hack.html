@@ -67,53 +67,49 @@ $(window).scroll(function(e){
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="./index.html">Vision</a></li>
+            <li><a href="./index.html">Vision</a></li>
             <li><a href="demo-overview.html">UI Demo</a></li>
-            <li><a href="hardware-hack.html">Hardware Hack</a></li>
+            <li class="active"><a href="demo-overview.html">Hardware Hack</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    
-    <div class="jumbotron-bg"></div>
-    <div class="jumbotron">
-      <div class="container">
-          <img src="./images/artifact.png" alt="Artifact logo" style="margin-right: 12px"/>
-          <a class="btn btn-info btn-lg" href="./demo-overview.html" role="button">See UI Demo</a>
-          <a class="btn btn-info btn-lg" href="./hardware-hack.html" role="button">Watch Video</a>
-      </div>
-    </div>
-    
     <div class="container">
-      <div class="row" id="problem-info">
-        <div class="col-md-7 .col-md-offset-1 text-col">
-          <p class="lead"><span class="amaranth">Patients want to be heard and healthcare providers want to hear them.</span> Yet our frustrations and elations are often lost in the busyness of the medical establishment. Patient experiences are playing a crucial role in healthcare funding around the world.</p>
-        </div>
-        <div class="col-md-3">
-          <img class="img-responsive" src="images/waiting-room.jpg"/>
-        </div>
-      </div>
-      <!-- Customer - Analytics -->
-      <div class="row top-buffer" id="team-info">
+      <!-- Video -->
+      <div class="row">
          <div class="col-md-10 .col-md-offset-1">
-          <div  id="analytics-photo" class="bg-img">
-          <h3 class="amaranth">Natural language processing joins individual experiences into collective sentiments<h3>
-          <p class="text-over-image">We present our customers with positive and negative experiences, as well as the story and context connected to them. Bag-of-words sentiment classification allows us to cluster experiences at a particular location and we allow customers to review sentiment and positivity over time.</p>
-        </div>
+            <h3 class="amaranth">A video showing how we imagine our users and customers using Artifact</h3>
+         </div>
+      </div>
+      <!-- Video -->
+      <div class="row top-buffer">
+         <div class="col-md-10 .col-md-offset-1 text-col">
+           <h3 class="amaranth">Weekend Hack</h3>
+           <p class="lead">We constructed several iterations of a package shape, built a recording circuit using a Raspberry Pi, mocked up an online UI, interviewed many potential users and played around with natural language processing, laser cutting, and wifi adapters.</p>
+           <p class="lead amaranth">You can see some of our work from the weekend in the photos below.</p>
+         </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-md-10 .col-md-offset-1">
+          <img class="img-responsive" src="./images/hardware-guts.jpg" alt="Before the circuit was put together- a mess of wires">
         </div>
       </div>
-      <!-- User- Product -->
-      <div class="row top-buffer" id="product-info">
-        <div class="col-md-4 .col-md-offset-1">
-          <img class="img-responsive" src="images/orbs-single-white.jpg"/>
+      <div class="row top-buffer">
+        <div class="col-md-10 .col-md-offset-1">
+          <img class="img-responsive" src="./images/hardware-working.jpg" alt="Team members Michael and Navin putting together the prototype">
         </div>
-        <div class="col-md-6 text-col">
-          <h3>An artifact to capture spoken experiences</h3>
-            <p class="lead"><strong>Three simple interactions</strong>:Record a positive experience, record a negative experience or ask for information.</p>
-            <p class="lead"><strong>Inspiring curiosity</strong>: Unique form factor draws people to interact with the Artifacts sharing their space</p>
-            <p class="lead"><strong>Hardware features</strong>: 3 button interface, infection resistant, integrated speaker and microphone, communicates via wifi, battery powered</p>
-          </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-md-10 .col-md-offset-1">
+          <img class="img-responsive" src="./images/hardware-connected.jpg" alt="The prototype with input buttons">
         </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-md-10 .col-md-offset-1">
+          <img class="img-responsive" src="./images/hardware-tidy.jpg" alt="A smaller laser cut version of the prorotype shape">
+        </div>
+      </div>
+
       <!-- Our Team -->
       <div class="row top-buffer" id="team-info">
          <div class="col-md-10 .col-md-offset-1">

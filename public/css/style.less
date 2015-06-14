@@ -9,7 +9,7 @@
 @light-blue: #EDFAF9;
 @dark-green: #85B156;
 @light-green: #D7FBAB;
-@circle-size: 65px;
+@circle-size: 80px;
 
 // Circle mixin with LESS from http://davidwalsh.name/css-circles
 .circle(@size: 0) {
@@ -66,7 +66,9 @@
 .navbar {
   margin-bottom: 0px;
 }
-
+.top-buffer { 
+  margin-top: 40px;
+}
 // Button style based on: http://cssdeck.com/labs/beautiful-flat-buttons
 button { 
   position: relative;
@@ -103,19 +105,60 @@ button.btn-med {
 ///
 //  INDEX PAGE
 ///
+#index-body	{
+  background: url("../images/orbs-banner.jpg") top right no-repeat;
+  background-attachment:fixed;
+}
 .jumbotron {
-  background: url('https://files.slack.com/files-pri/T050M901W-F06AJPJPK/ideation53_productfinal.jpg') no-repeat center center;
-  background-size: cover;
- }
+  background: transparent;
+}
+.text-col {
+  background: rgba(255,255,255,0.7);
+}
+.bg-img {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  
+  float: left;
+  color: white;
+  text-align: center;
 
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  .text-over-image {
+    margin: 0;
+    font-size: 22px;
+    padding: 20px;
+  }
+}
+#team-photo {
+  background-image: linear-gradient(
+                      rgba(0, 0, 0, 0.5),
+                      rgba(0, 0, 0, 0.5)
+                    ),
+                    url("../images/finding-user-stories.jpg");
+}
+#analytics-photo {
+  background-image: linear-gradient(
+                      rgba(0, 0, 0, 0.7),
+                      rgba(0, 0, 0, 0.7)
+                    ),
+                    url("../images/analytics-mockup.png");
+}
 
 ///
 // DEMO OVERVIEW PAGE
 ///
-
 .demo-container {
   background-color: @light-blue;
 }
+.time-step {
+  background-color: white;
+  font-weight: bold;
+}
+
 
 // Map style
 #heatmap-container {
@@ -269,4 +312,31 @@ nav.navbar-static-top {
 .graph-info {
     width: 590px;
     margin-bottom: 10px;
+}
+
+.module {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+  background-size: cover;
+  width: 300px;
+  height: 200px;
+  margin: 10px 0 0 10px;
+  position: relative;
+  float: left;
+}
+.mid h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
 }
