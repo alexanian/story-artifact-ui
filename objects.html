@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BASE href="/public/">
+    <!-- <BASE href="/public/">-->
     <!-- local testing base    <BASE href="file:///C:/Users/Tessa/Documents/Repositories/story-artifact-ui/public/">-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,16 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
     <title>Story Artifacts UI</title>
+
+    <!-- Project scripts -->
+    <script src="./script/jquery.min.js"></script>
+    <script src="./script/bluebird.min.js"></script>
+    <script src="./script/common.js"></script>
+    <script src="./script/lodash.min.js"></script>
+    <script src="./script/jquery.flot.min.js"></script>
     
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -31,17 +40,26 @@
     <![endif]-->
     
     <!-- Project CSS -->
-    <link rel="stylesheet" href="css/style.css"> 
-    <link rel="stylesheet" href="css/hover-pulse.css">
-    <link rel="stylesheet" href="css/font/amaranth-font-face.css">
-    
-    <!-- Project scripts -->
-    <script src="script/jquery.min.js"></script>
-    <script src="script/bluebird.min.js"></script>
-    <script src="script/common.js"></script>
-    <script src="script/lodash.min.js"></script>
-
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/hover-pulse.css">
+    <link rel="stylesheet" href="./css/font/amaranth-font-face.css">
     <script>
+    
+    var param={
+        id:geturl()
+    };
+    query('../../rest/object', param)
+        .then(function (data) {
+        var html = "";
+        console.log("1",data)
+        _.forEach(data.stories, function (obj) {
+            console.log(obj)
+            html += '<a href="stories.html#' + obj + '">' + obj + '</a>';
+            html += "<br>"
+        });
+    document.getElementById("result").innerHTML = html;
+    })
+
     //query('../rest/overview', {})
     var data= [{
         "pos": 1,
@@ -87,7 +105,7 @@
             markersList += '<span class="marker-content glyphicon glyphicon-headphones hvr-pulse '
             
             // Init object list item
-            objectList += '<li><a href="objects.html"><span class="status '
+            objectList += '<li><a href="#"><span class="status '
 
             // Assign colour class based on percent of positive reviews
             var pctPos = obj.pos / ( obj.pos + obj.neg);
@@ -110,7 +128,7 @@
             markersList +=  '</div>'
             
             objectList += String(Math.round(pctPos*100)) + "%</span>"
-            objectList += obj.location +"</a></li>"
+            objectList += obj.location +"</li>"
           });
       })
     $(document).ready( function() {
@@ -124,6 +142,72 @@
       listHTML = $("#markers-list").html();
       listHTML += markersList;
       $("#markers-list").html(listHTML);
+    });
+    </script>
+    <script>
+    $(document).ready(function {
+      var graphData = [{
+        // Visits
+        data: [ [6, 1300], [7, 1600], [8, 1900], [9, 2100], [10, 2500], [11, 2200], [12, 2000], [13, 1950], [14, 1900], [15, 2000] ],
+        color: '#71c73e'
+      }, {
+        // Returning Visits
+        data: [ [6, 500], [7, 600], [8, 550], [9, 600], [10, 800], [11, 900], [12, 800], [13, 850], [14, 830], [15, 1000] ],
+        color: '#77b7c5',
+        points: { radius: 4, fillColor: '#77b7c5' }
+      }
+      ];
+    // Lines
+    $.plot($('#graph-lines'), graphData, {
+      series: {
+        points: {
+          show: true,
+          radius: 5
+        },
+        lines: {
+          show: true
+        },
+          shadowSize: 0
+        },
+        grid: {
+          color: '#646464',
+          borderColor: 'transparent',
+          borderWidth: 20,
+          hoverable: true
+        },
+        xaxis: {
+          tickColor: 'transparent',
+          tickDecimals: 2
+        },
+        yaxis: {
+          tickSize: 1000
+        }
+    });
+     
+    // Bars
+    $.plot($('#graph-bars'), graphData, {
+      series: {
+        bars: {
+          show: true,
+          barWidth: .9,
+          align: 'center'
+          },
+        shadowSize: 0
+        },
+        grid: {
+          color: '#646464',
+          borderColor: 'transparent',
+          borderWidth: 20,
+          hoverable: true
+        },
+        xaxis: {
+          tickColor: 'transparent',
+          tickDecimals: 2
+        },
+        yaxis: {
+          tickSize: 1000
+        }
+    });
     });
     </script>
   </head>
@@ -145,42 +229,62 @@
           <ul class="nav navbar-nav">
             <li><a href="./index.html">Vision</a></li>
             <li class="active"><a href="demo-overview.html">UI Demo</a></li>
-            <li ><a href="hardware-hack.html">Hardware Hack</a></li>
+            <li><a href="hardware-hack.html">Hardware Hack</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container demo-container">
-      <h1 class="amaranth">What stories are being told?</h1>
-      <div id="heatmap-container" class="col-md-7">         
-        <img src="http://upload.wikimedia.org/wikipedia/commons/b/b6/PSM_V79_D623_First_floor_plan_of_the_zoological_lab_at_the_u_of_pennsylvania.png" alt="First floor plan of the zoological lab at the University of Pennsylvania, from Wikimedia Commons"/>
-        <div id = "markers-list" class="markers">
-          <div id="OperationsRoom" class="marker" style="left:42%; top:60%;">
-            <span class="marker-content glyphicon glyphicon-headphones pos-60 hvr-pulse">
+      <div class="row">
+        <img class="img-responsive" src="./images/analytics-mockup.png"></img>
+        <div id="location-info-container" class="col-md-4">
+          <h2 id="location-name"><span class="status pos-60">67%</span>Waiting Room 3</h2>
+          <div class="location-info">
+            <p class="lead">In the past <span class="time-step">hour</span> there have been:</p>
+            <p><span id="responseCount">84</span> Responses and <span id="storyCount">22</span> Stories Shared</p>
           </div>
         </div>
       </div>
-      <div id="list-container" class="col-md-4">
-        <h2>
-          <button class="btn btn-med" href="#">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</a>
-          </button>
-          <button class="btn btn-med" href="#">
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Insights</a>
-          </button>
-        </h2>
-        <p class="lead">Select one of the listening stations to learn more about the stories being told in that space.</p>
-
-        <ul id="object-list" class="list-unstyled">
-          <li><a href="./objects.html"><span class="status pos-60">67%</span>Operations Room</a></li>
-        </ul>
-
-        <button class="btn " href="#">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Settings</a>
-        </button>
-
-
+      <div class="row">
+        <div class="clearfix"></div>
+        <div id="stories-container" class="">
+          <div id="positive-stories" class="col-md-6">
+            <h2>Positive Experiences</h2>
+            <div id="story-list" class="list-group">
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Time Stamp 1</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+              <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">Time Stamp 2</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Time Stamp 3</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+            </div>
+          </div>
+          <div id="negative-stories" class="col-md-6">
+            <h2>Negative Experiences</h2>
+            <div id="story-list" class="list-group">
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Time Stamp 1</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+              <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">Time Stamp 2</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Time Stamp 3</h4>
+                <p class="list-group-item-text">Beginning of the story suggest that lalalalala...</p>
+              </a>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div><!-- /.container -->
 
