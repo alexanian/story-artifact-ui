@@ -4,10 +4,12 @@
 @pos-75: #FFEB4D; // Less than 75% positive - rgb(255, 235, 77)
 @pos:    #AFF757; // More than 75% positive - rgb(175, 247, 87)
 
-// Other colours
-@dark-blue: #00003D;
+// Other variables
+@dark-blue: #0D1A61;
 @light-blue: #EDFAF9;
-@circle-size: 50px;
+@dark-green: #85B156;
+@light-green: #D7FBAB;
+@circle-size: 65px;
 
 // Circle mixin with LESS from http://davidwalsh.name/css-circles
 .circle(@size: 0) {
@@ -17,6 +19,17 @@
   -webkit-border-radius: @size / 2 + 0px;
   -moz-border-radius: @size / 2 + 0px;
   border-radius: @size / 2 + 0px;
+}
+
+.gradient-circle(@size: 0, @center-color: rgba(255,255,255,1),
+                 @mid-color: rgba(255,255,255,1), @edge-color: rgba(255,255,255,0)){
+    width: @size;
+    height: @size;
+
+    background: -webkit-radial-gradient(circle, @center-color, @mid-color, @edge-color); /* For Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(circle, @center-color, @mid-color, @edge-color); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(circle, @center-color, @mid-color, @edge-color); /* For Fx 3.6 to 15 */
+    background: radial-gradient(circle, @center-color, @mid-color, @edge-color); /* Standard syntax (must be last) */
 }
 
 .shadow(@color: #000, @size: 12px) {
@@ -67,8 +80,8 @@
     height: auto;
     max-width: 100%;
     width: auto;
-    opacity: 0.9;
-    filter: alpha(opacity=90); /* For IE8 and earlier */
+    opacity: 0.95;
+    filter: alpha(opacity=95); /* For IE8 and earlier */
   }
   
   .markers {
@@ -86,34 +99,40 @@
       -o-transform: translateX(-50%) translateY(-50%);
       transform: translateX(-50%) translateY(-50%);
       
-      .circle(@circle-size);
       line-height: @circle-size;
       .shadow(#FFF);
     }
     .marker > .marker-content:hover {
       .shadow(#FFF, 20px);
+      
     }
-    
+    .marker > .marker-content.pos-40 { .gradient-circle(@circle-size, @pos-40, fade(@pos-40, 0.9), fade(@pos-40, 0)); }
+    .marker > .marker-content.pos-60 { .gradient-circle(@circle-size, @pos-60, fade(@pos-60, 0.9), fade(@pos-60, 0)); }
+    .marker > .marker-content.pos-75 { .gradient-circle(@circle-size, @pos-75, fade(@pos-75, 0.9), fade(@pos-75, 0)); }
+    .marker > .marker-content.pos { .gradient-circle(@circle-size, @pos, fade(@pos, 0.9), fade(@pos, 0)); }
   }
 }
 
 // List style
 #list-container {
-   background-color: white;
+  background-color: white;
+    
+  ul {
+    margin: 12px 0px;
+  }  
 
   // Style based on http://cssmenumaker.com/blog/flat-jquery-accordion-menu-tutorial
   a {
-    line-height: 1.3;
-    font-size: 25px;
-    font-weight: bold;
+    line-height: 1.5;
+    font-size: 22px;
     display: block;
     background: #fff;
     color: @dark-blue;
     border-width: 5px 0px;
     border-style: solid;
     border-color: #fff;
-    text-transform: uppercase;
     position: relative;
+    padding: 0px;
   }
   
   a:hover{
@@ -122,23 +141,62 @@
   }
   
   span.status {
-    padding: 0px;
+    display: display-block;
+    overflow:auto;
+    height: 100%;
+    padding: 4px;
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 12px;
   }
+  // Button style based on: http://cssdeck.com/labs/beautiful-flat-buttons
+  button { 
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+    display: inline-block;
+    height: 60px;
+    padding: 0;
+    margin: 0px 0px 12px 0px;
+    font-size: 22px;
+    color: @dark-blue;
+    text-align: center;
+    background: @light-green;
+    border: 0;
+    border-bottom: 2px solid @dark-green;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px @dark-green;
+    box-shadow: inset 0 -2px @dark-green;
+      
+    .glyphicon {
+      margin-right: 12px;
+    }
+  }
+  button:active {
+    top: 1px;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  button.btn-half {
+    width: 40%;
+  }
+
 }
 
 // Navbar
 nav.navbar-static-top {
-  background-color: @dark-blue;
+  background-color: @light-green;
   background-image: none;
+  border-bottom: 0px;
+  font-size: 18px;
+  text-shadow: 0px;
   
   a.navbar-brand, a.navbar-brand:hover {
-    color: @light-blue;
+    color: @dark-blue;
   }
   ul.nav a {
-    color: @light-blue;
+    color: @dark-blue;
   }
 }

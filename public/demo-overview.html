@@ -38,6 +38,7 @@
     
     <!-- Project CSS -->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/hover-pulse.css">
     <script>
     //query('../rest/overview', {})
     var data= [{
@@ -131,26 +132,23 @@
         <img src="http://upload.wikimedia.org/wikipedia/commons/b/b6/PSM_V79_D623_First_floor_plan_of_the_zoological_lab_at_the_u_of_pennsylvania.png" alt="First floor plan of the zoological lab at the University of Pennsylvania, from Wikimedia Commons"/>
         <div class="markers">
           <div id="OperationsRoom" class="marker" style="left:42%; top:60%;">
-            <span class="marker-content glyphicon glyphicon-headphones pos-60">
+            <span class="marker-content glyphicon glyphicon-headphones pos-60 hvr-pulse">
           </div>
           <div id="WaitingRoom1" class="marker" style="left:60%; top:42%;">
-            <span class="marker-content glyphicon glyphicon-headphones pos">
+            <span class="marker-content glyphicon glyphicon-headphones pos hvr-pulse">
           </div>
            <div id="WaitingRoom3" class="marker" style="left:60%; top:80%;">
-            <span class="marker-content glyphicon glyphicon-headphones pos-40">
+            <span class="marker-content glyphicon glyphicon-headphones pos-40 hvr-pulse">
           </div>
         </div>
       </div>
       <div id="list-container" class="col-md-4">
         <h2>
-          <button class="btn btn-default" href="#">
+          <button class="btn btn-half" href="#">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</a>
           </button>
-          <button class="btn btn-default" href="#">
+          <button class="btn btn-half" href="#">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Insights</a>
-          </button>
-          <button class="btn btn-default" href="#">
-              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</a>
           </button>
         </h2>
         <p class="lead">Select one of the listening stations to learn more about the stories being told in that space.</p>
@@ -158,6 +156,10 @@
         <ul id="list" class="list-unstyled">
           <li><a href="#"><span class="status pos-60">67%</span>Operations Room</a></li>
         </ul>
+        <button class="btn btn-default" href="#">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</a>
+        </button>
+
       </div>
     </div><!-- /.container -->
 
